@@ -1,0 +1,14 @@
+<div class="card-container">
+  <!-- Row 1: Contracts & Parts -->
+  <div class="card-row">
+    <!-- Contracts -->
+    <div class="card-group">
+      <div class="card-title-box small-title">CONTRACTS</div>
+      <div class="card">
+        <dx-data-grid [dataSource]="contracts" [showBorders]="true">
+          <dxi-column dataField="id" caption="ID"  alignment="center"></dxi-column>
+          <dxi-column dataField="title" caption="Title"  alignment="center"></dxi-column>
+          <dxi-column dataField="isActive" caption="Active" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>

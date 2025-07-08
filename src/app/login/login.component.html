@@ -1,0 +1,10 @@
+<p>login works!</p>
+<div class="login-popup">
+  <h3>Login</h3>
+  <form (submit)="login()">
+    <input type="text" placeholder="Username" required /><br />
+    <input type="password" placeholder="Password" required /><br />
+    <button type="submit">Login</button>
+    <button type="button" (click)="close.emit()">Cancel</button>
+  </form>
+</div>

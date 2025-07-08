@@ -7,11 +7,23 @@ import { DevExtremeModule, DxBoxModule, DxDrawerModule, DxListModule } from 'dev
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { HttpClientModule } from '@angular/common/http';
+import { ContractComponent } from './contract/contract.component';
+import { PartsComponent } from './parts/parts.component';
+import { ServicecentreComponent } from './servicecentre/servicecentre.component';
+import { PartnerComponent } from './partner/partner.component';
+import { StaffComponent } from './staff/staff.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    ContractComponent,
+    PartsComponent,
+    ServicecentreComponent,
+    PartnerComponent,
+    StaffComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

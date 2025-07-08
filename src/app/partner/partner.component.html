@@ -1,0 +1,11 @@
+<div class="card-row">
+    <!-- Partners -->
+    <div class="card-group">
+      <div class="card-title-box small-title">Partners</div>
+      <div class="card">
+        <dx-data-grid [dataSource]="partners" [showBorders]="true">
+          <dxi-column dataField="id" caption="ID"alignment="center"></dxi-column>
+          <dxi-column dataField="name" caption="Name" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>

@@ -14,10 +14,12 @@ export class AppComponent {
 
   menuItems = [
   { text: 'Dashboard', path: '/dashboard' },
-    { text: 'Contracts' },
-    { text: 'Parts' },
-    { text: 'Service Centres' },
-    { text: 'Partners' }
+    { text: 'Contracts',path:'/contract' },
+    { text: 'Parts' ,path:'/parts'},
+    { text: 'Service Centres',path:'/servicecentre' },
+    { text: 'Partners',path:'/partner' },
+    {text:'Staff',path:'/staff'},
+{text:'Login',path:'/login'}
   ];
 
   onMenuClick(e: any): void {

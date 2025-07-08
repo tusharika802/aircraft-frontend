@@ -1,3 +1,10 @@
+<!-- login -->
+<div class="dashboard-header">
+  <button class="login-btn" (click)="openLoginPopup()">Login</button>
+</div>
+<app-login *ngIf="showLoginPopup" (close)="closeLoginPopup()"></app-login>
+
+<!-- login -->
 
 <div class="full-card-wrapper">
   <div class="dashboard-card">
@@ -31,49 +38,57 @@
     </div>
   </div>
 </div>
+<div class="card-container">
+  <!-- Row 1: Contracts & Parts -->
+  <div class="card-row">
+    <!-- Contracts -->
+    <div class="card-group">
+      <div class="card-title-box small-title">Contracts</div>
+      <div class="card">
+        <dx-data-grid [dataSource]="contracts" [showBorders]="true">
+          <dxi-column dataField="id" caption="ID"  alignment="center"></dxi-column>
+          <dxi-column dataField="title" caption="Title"  alignment="center"></dxi-column>
+          <dxi-column dataField="isActive" caption="Active" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
 
-
-<!-- Grids -->
-
-<div class="grid-row">
-  <div class="grid-block">
-     <h4 style="text-align: left; margin-top: 1rem;">Contracts</h4>
-    <dx-data-grid [dataSource]="contracts" [showBorders]="true">
-      <dxi-column dataField="id" caption="ID" [width]="180" alignment="center"></dxi-column>
-      <dxi-column dataField="title" caption="Title" [width]="180" alignment="center"></dxi-column>
-      <dxi-column dataField="isActive" caption="Active" [width]="180" alignment="center"></dxi-column>
-    </dx-data-grid>
+    <!-- Parts -->
+    <div class="card-group">
+      <div class="card-title-box small-title">Parts</div>
+      <div class="card">
+        <dx-data-grid [dataSource]="parts" [showBorders]="true">
+          <dxi-column dataField="id" caption="ID"  alignment="center"></dxi-column>
+          <dxi-column dataField="name" caption="Name"  alignment="center"></dxi-column>
+          <dxi-column dataField="status" caption="Status" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
   </div>
 
-  <div class="grid-block">
-     <h4 style="text-align: left; margin-top: 1rem;">Parts</h4>
-    <dx-data-grid [dataSource]="parts" [showBorders]="true">
-      <dxi-column dataField="id" caption="ID" [width]="180" alignment="center"></dxi-column>
-      <dxi-column dataField="name" caption="Name" [width]="180" alignment="center"></dxi-column>
-      <dxi-column dataField="status" caption="Status" [width]="180" alignment="center"></dxi-column>
-    </dx-data-grid>
-  </div>
-</div>
+  <!-- Row 2: Partners & Staff -->
+  <div class="card-row">
+    <!-- Partners -->
+    <div class="card-group">
+      <div class="card-title-box small-title">Partners</div>
+      <div class="card">
+        <dx-data-grid [dataSource]="partners" [showBorders]="true">
+          <dxi-column dataField="id" caption="ID"alignment="center"></dxi-column>
+          <dxi-column dataField="name" caption="Name" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
 
-<div class="grid-row">
-  
-
-  <!-- Partners -->
-  <div class="grid-block">
-    <h4 style="text-align: left; margin-top: 1rem;">Partners</h4>
-    <dx-data-grid [dataSource]="partners" [showBorders]="true">
-      <dxi-column dataField="id" caption="ID" [width]="200" alignment="center"></dxi-column>
-      <dxi-column dataField="name" caption="Name" [width]="200" alignment="center"></dxi-column>
-    </dx-data-grid>
-  </div>
-
-  <!-- Staff -->
-  <div class="grid-block">
-    <h4 style="text-align: left; margin-top: 1rem;">Staff</h4>
-    <dx-data-grid [dataSource]="staffList" [showBorders]="true">
-      <dxi-column dataField="id" caption="ID" [width]="150" alignment="center"></dxi-column>
-      <dxi-column dataField="name" caption="Name" [width]="150" alignment="center"></dxi-column>
-      <dxi-column dataField="isActive" caption="Active" [width]="150" alignment="center"></dxi-column>
-    </dx-data-grid>
+    <!-- Staff -->
+    <div class="card-group">
+      <div class="card-title-box small-title">Staff</div>
+      <div class="card">
+        <dx-data-grid [dataSource]="staffList" [showBorders]="true">
+          <dxi-column dataField="id" caption="ID" alignment="center"></dxi-column>
+          <dxi-column dataField="name" caption="Name"  alignment="center"></dxi-column>
+          <dxi-column dataField="isActive" caption="Active"  alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
   </div>
 </div>

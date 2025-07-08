@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Contract } from './contract';
 import { Part } from './part';
-import { ServiceCentre } from './service-centre';
+import { ServiceCentre } from './servicecentre';
 import { Partner } from './partner';
 import { Staff } from './staff';
 

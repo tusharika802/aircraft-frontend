@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Contract } from '../contract';
 import { Part } from '../part';
-import { ServiceCentre } from '../service-centre';
+import { ServiceCentre } from '../servicecentre';
 import { Partner } from '../partner';
 import { Staff } from '../staff';
 import { DashboardService } from '../dashboard.service';
@@ -43,4 +43,15 @@ export class DashboardComponent implements OnInit {
     this.service.getAllPartners().subscribe(res => this.partners = res);
     this.service.getAllStaff().subscribe(res => this.staffList = res);
   }
+
+showLoginPopup = false;
+
+openLoginPopup() {
+  this.showLoginPopup = true;
+}
+
+closeLoginPopup() {
+  this.showLoginPopup = false;
+}
+
 }
