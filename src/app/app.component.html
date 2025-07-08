@@ -1,0 +1,43 @@
+<dx-drawer
+  [opened]="true"
+  [shading]="false"
+  [minSize]="200"
+  [template]="'menuTemplate'"
+  [openedStateMode]="'push'"
+  [revealMode]="'slide'"
+  [height]="'100vh'">
+
+  <!-- Sidebar Content (Menu + Logo) -->
+  <div *dxTemplate="let data of 'menuTemplate'">
+    <div style="width: 250px; background-color: #f4f4f4; height: 100%; padding: 10px;">
+      
+      <!-- Logo -->
+      <div style="text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 20px;">
+         Aircraft Management
+      </div>
+
+      <!-- Menu List -->
+      <dx-list
+        [items]="menuItems"
+        [selectionMode]="'single'"
+        (onItemClick)="onMenuClick($event)">
+      </dx-list>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <div style="padding: 20px;">
+    <router-outlet></router-outlet>
+
+    <!-- <h2>{{ selectedMenu }}</h2>
+    <p>Welcome to {{ selectedMenu }} section.</p> -->
+  </div>
+</dx-drawer>
+
+
+<!-- <dx-data-grid
+  [dataSource]="[{ id: 1, name: 'Test' }]"
+  [showBorders]="true">
+  <dxi-column dataField="id" caption="ID"></dxi-column>
+  <dxi-column dataField="name" caption="Name"></dxi-column>
+</dx-data-grid> -->

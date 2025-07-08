@@ -1,0 +1,79 @@
+
+<div class="full-card-wrapper">
+  <div class="dashboard-card">
+    <div class="card-header">Dashboard Overview</div>
+
+    <div class="card-grid">
+      <div class="count-box accent">
+        <div class="title">Active Contracts</div>
+        <div class="value">{{ contractCount }}</div>
+      </div>
+
+      <div class="count-box warning">
+        <div class="title">Parts In Progress</div>
+        <div class="value">{{ partInProgressCount }}</div>
+      </div>
+
+      <div class="count-box info">
+        <div class="title">Service Centres</div>
+        <div class="value">{{ serviceCentreCount }}</div>
+      </div>
+
+      <div class="count-box success">
+        <div class="title">Partners</div>
+        <div class="value">{{ partnerCount }}</div>
+      </div>
+
+      <div class="count-box dark">
+        <div class="title">Active Staff</div>
+        <div class="value">{{ staffCount }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Grids -->
+
+<div class="grid-row">
+  <div class="grid-block">
+     <h4 style="text-align: left; margin-top: 1rem;">Contracts</h4>
+    <dx-data-grid [dataSource]="contracts" [showBorders]="true">
+      <dxi-column dataField="id" caption="ID" [width]="180" alignment="center"></dxi-column>
+      <dxi-column dataField="title" caption="Title" [width]="180" alignment="center"></dxi-column>
+      <dxi-column dataField="isActive" caption="Active" [width]="180" alignment="center"></dxi-column>
+    </dx-data-grid>
+  </div>
+
+  <div class="grid-block">
+     <h4 style="text-align: left; margin-top: 1rem;">Parts</h4>
+    <dx-data-grid [dataSource]="parts" [showBorders]="true">
+      <dxi-column dataField="id" caption="ID" [width]="180" alignment="center"></dxi-column>
+      <dxi-column dataField="name" caption="Name" [width]="180" alignment="center"></dxi-column>
+      <dxi-column dataField="status" caption="Status" [width]="180" alignment="center"></dxi-column>
+    </dx-data-grid>
+  </div>
+</div>
+
+<div class="grid-row">
+  
+
+  <!-- Partners -->
+  <div class="grid-block">
+    <h4 style="text-align: left; margin-top: 1rem;">Partners</h4>
+    <dx-data-grid [dataSource]="partners" [showBorders]="true">
+      <dxi-column dataField="id" caption="ID" [width]="200" alignment="center"></dxi-column>
+      <dxi-column dataField="name" caption="Name" [width]="200" alignment="center"></dxi-column>
+    </dx-data-grid>
+  </div>
+
+  <!-- Staff -->
+  <div class="grid-block">
+    <h4 style="text-align: left; margin-top: 1rem;">Staff</h4>
+    <dx-data-grid [dataSource]="staffList" [showBorders]="true">
+      <dxi-column dataField="id" caption="ID" [width]="150" alignment="center"></dxi-column>
+      <dxi-column dataField="name" caption="Name" [width]="150" alignment="center"></dxi-column>
+      <dxi-column dataField="isActive" caption="Active" [width]="150" alignment="center"></dxi-column>
+    </dx-data-grid>
+  </div>
+</div>

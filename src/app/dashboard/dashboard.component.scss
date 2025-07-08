@@ -1,0 +1,172 @@
+
+// .full-card-wrapper {
+//   width: 100%;
+//   display: flex;
+//   justify-content: left;
+//   padding: 20px;
+//   box-sizing: border-box;
+// }
+
+// .dashboard-card {
+//   background: #fff;
+//   border-radius: 10px;
+//   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+//   padding: 20px;
+//   width: 95%;
+// }
+
+// .card-header {
+//   font-size: 15px;
+//   font-weight: bold;
+//   // margin-bottom: 20px;
+//   text-align: center;
+//   // border-bottom: 1px solid #eee;
+//   padding-bottom: 10px;
+// }
+
+// /* FLEX: All boxes in one row */
+// .card-grid {
+//   display: flex;
+//   justify-content: space-between;
+//   flex-wrap: nowrap;
+//   gap: 16px;
+// }
+
+// .count-box {
+//   flex: 1;
+//   min-width: 120px;
+//   padding: 10px;
+//   border-radius: 8px;
+//   color: #fff;
+//   text-align: center;
+//   font-size: 14px;
+// }
+
+// .count-box .title {
+//   font-weight: 600;
+//   margin-bottom: 4px;
+// }
+
+// .count-box .value {
+//   font-size: 20px;
+//   font-weight: bold;
+// }
+// .grid-row {
+//   display: flex;
+//   gap: 2rem; /* adjust the spacing between tables */
+//   flex-wrap: wrap; /* responsive wrap on smaller screens */
+// }
+
+// .grid-block {
+//   flex: 1;
+//   min-width: 300px;
+// }
+
+// .section-heading {
+//   text-align: center;
+//   font-size: 1.25rem;
+//   font-weight: 600;
+//   margin-bottom: 1rem;
+// }
+
+// /* Theme Colors */
+// .accent { background: #3f51b5; }
+// .warning { background: #ff9800; }
+// .info { background: #00bcd4; }
+// .success { background: #4caf50; }
+// .dark { background: #37474f; }
+
+.full-card-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.dashboard-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 95%;
+}
+
+.card-header {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+/* FLEX: All boxes in one row */
+.card-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 16px;
+}
+
+.count-box {
+  flex: 1;
+  min-width: 120px;
+  padding: 10px;
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+
+.count-box .title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.count-box .value {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.grid-row {
+  display: flex;
+  gap: 2rem; /* spacing between tables */
+  flex-wrap: wrap; /* wrap on smaller screens */
+}
+
+.grid-block {
+  flex: 1;
+  min-width: 300px;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Theme Colors */
+.accent {
+  background: #3f51b5;
+}
+
+.warning {
+  background: #ff9800;
+}
+
+.info {
+  background: #00bcd4;
+}
+
+.success {
+  background: #4caf50;
+}
+
+.dark {
+  background: #37474f;
+}
+
+/* ✅ Bold column headers inside dx-data-grid */
+::ng-deep .grid-block .dx-datagrid-headers .dx-header-row > td {
+  font-weight: bold !important;
+}
