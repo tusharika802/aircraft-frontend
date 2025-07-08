@@ -5,6 +5,7 @@ import { ServiceCentre } from '../servicecentre';
 import { Partner } from '../partner';
 import { Staff } from '../staff';
 import { DashboardService } from '../dashboard.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,9 @@ export class DashboardComponent implements OnInit {
   partners: Partner[] = [];
   staffList: Staff[] = [];
 
-  constructor(private service: DashboardService) {}
+  constructor(private service: DashboardService,
+    private router:Router
+  ) {}
 
   ngOnInit(): void {
     
@@ -45,14 +48,15 @@ export class DashboardComponent implements OnInit {
     this.service.getAllStaff().subscribe(res => this.staffList = res);
   }
 
-// showLoginPopup = false;
+showLoginPopup = false;
 
-// openLoginPopup() {
-//   this.showLoginPopup = true;
-// }
+openLoginPopup(): void {
+  this.router.navigate(['/login']); // 🔁 Navigate to login component
+}
 
-// closeLoginPopup() {
-//   this.showLoginPopup = false;
-// }
+
+closeLoginPopup() {
+  this.showLoginPopup = false;
+}
 
 }

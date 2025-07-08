@@ -3,7 +3,15 @@
   <button class="login-btn" (click)="openLoginPopup()">Login</button>
 </div>
 <app-login *ngIf="showLoginPopup" (close)="closeLoginPopup()"></app-login> -->
-
+<!-- 🔷 DevExtreme Login Button -->
+<div class="dashboard-header">
+  <dx-button 
+    text="Login" 
+    icon="user" 
+    type="default" 
+    (onClick)="openLoginPopup()">
+  </dx-button>
+</div>
 <!-- login -->
 
 <div class="full-card-wrapper">
