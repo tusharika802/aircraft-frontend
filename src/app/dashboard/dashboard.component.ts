@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
   constructor(private service: DashboardService) {}
 
   ngOnInit(): void {
+    
     // Count cards
     this.service.getActiveContractsCount().subscribe(res => this.contractCount = res);
     this.service.getInProgressPartsCount().subscribe(res => this.partInProgressCount = res);
@@ -44,14 +45,14 @@ export class DashboardComponent implements OnInit {
     this.service.getAllStaff().subscribe(res => this.staffList = res);
   }
 
-showLoginPopup = false;
+// showLoginPopup = false;
 
-openLoginPopup() {
-  this.showLoginPopup = true;
-}
+// openLoginPopup() {
+//   this.showLoginPopup = true;
+// }
 
-closeLoginPopup() {
-  this.showLoginPopup = false;
-}
+// closeLoginPopup() {
+//   this.showLoginPopup = false;
+// }
 
 }
