@@ -39,6 +39,7 @@ constructor(
     this.showLoginPopup = true;
     this.router.navigate(['/login']); // Redirect to login
   }
+
    closeLoginPopup(): void {
     this.showLoginPopup = false;
   }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DevExtremeModule, DxBoxModule, DxDrawerModule, DxListModule } from 'devextreme-angular';
+import { DevExtremeModule, DxBoxModule, DxDrawerModule, DxListModule, DxPopupModule } from 'devextreme-angular';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -13,7 +13,7 @@ import { ServicecentreComponent } from './servicecentre/servicecentre.component'
 import { PartnerComponent } from './partner/partner.component';
 import { StaffComponent } from './staff/staff.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
@@ -36,7 +36,9 @@ import { AuthInterceptor } from './auth.interceptor';
 DxDataGridModule,
 DxBoxModule,
 HttpClientModule,
-FormsModule
+FormsModule,
+DxPopupModule,
+ReactiveFormsModule
   ],
   providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
