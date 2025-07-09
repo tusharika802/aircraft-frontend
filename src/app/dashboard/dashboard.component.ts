@@ -1,19 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contract } from '../contract';
 import { Part } from '../part';
 import { ServiceCentre } from '../servicecentre';
 import { Partner } from '../partner';
 import { Staff } from '../staff';
 import { DashboardService } from '../dashboard.service';
-import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl:'./dashboard.component.scss'
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+    isLoggedIn = false;
+constructor(
+    private service: DashboardService,
+    private router: Router
+  ) {}
+
   // Count cards
   contractCount = 0;
   partInProgressCount = 0;
@@ -21,19 +26,40 @@ export class DashboardComponent implements OnInit {
   partnerCount = 0;
   staffCount = 0;
 
-  // Grid Data
+  // Grid data
   contracts: Contract[] = [];
   parts: Part[] = [];
   serviceCentres: ServiceCentre[] = [];
   partners: Partner[] = [];
   staffList: Staff[] = [];
 
-  constructor(private service: DashboardService,
-    private router:Router
-  ) {}
+  showLoginPopup = false;
+
+  openLoginPopup(): void {
+    this.showLoginPopup = true;
+    this.router.navigate(['/login']); // Redirect to login
+  }
+   closeLoginPopup(): void {
+    this.showLoginPopup = false;
+  }
+  
 
   ngOnInit(): void {
-    
+    this.isLoggedIn = !!localStorage.getItem('token');  // ✅ Check if token exists
+
+    if (this.isLoggedIn) {
+      this.loadDashboardData();                         // ✅ Load data only when logged in
+    }
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+    this.isLoggedIn = false;
+    window.location.reload(); // Refresh to re-check login status
+  }
+
+
+private loadDashboardData(): void {
+
     // Count cards
     this.service.getActiveContractsCount().subscribe(res => this.contractCount = res);
     this.service.getInProgressPartsCount().subscribe(res => this.partInProgressCount = res);
@@ -47,16 +73,5 @@ export class DashboardComponent implements OnInit {
     this.service.getAllPartners().subscribe(res => this.partners = res);
     this.service.getAllStaff().subscribe(res => this.staffList = res);
   }
-
-showLoginPopup = false;
-
-openLoginPopup(): void {
-  this.router.navigate(['/login']); // 🔁 Navigate to login component
-}
-
-
-closeLoginPopup() {
-  this.showLoginPopup = false;
-}
-
+ 
 }

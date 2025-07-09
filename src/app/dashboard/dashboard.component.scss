@@ -160,11 +160,28 @@
   box-shadow: red;
   background-color: #4caf50;
 }
-.dashboard-header{
-  background-color: rgb(143, 143, 225);
-    
-
+// .dashboard-header{
+//   background-color: rgb(143, 143, 225);
+//   display: flex;
+//   justify-content: flex-end;  // 🔁 Pushes button to right
+//   padding: 10px 20px;
+//     margin-left: -2%;
+//     margin-top: -2%;
+.dashboard-header {
+  display: flex;
+  justify-content: flex-end; /* 🔁 Align items to the right */
+  align-items: center;
+  gap: 10px;                 /* Space between login/logout buttons */
+  padding: 10px 20px;
+  // background-color: rgb(143, 143, 225);
+  position: sticky;          /* Optional: stick to top on scroll */
+  top: 0;
+  z-index: 1000;
+  width: 98%;
+  margin-top: -2%;
 }
+
+
 .login-btn {
   background-color: #3f51b5;
   color: white;

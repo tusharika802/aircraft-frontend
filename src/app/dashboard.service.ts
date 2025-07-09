@@ -23,6 +23,17 @@ export class DashboardService {
   getActiveContractsCount(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/Contracts/count`);
   }
+addContract(contract: Contract): Observable<any> {
+    return this.http.post(`${this.baseUrl}/Contracts/add`, contract);
+  }
+
+  editContract(id: number, contract: Contract): Observable<any> {
+    return this.http.put(`${this.baseUrl}/Contracts/edit?id=${id}`, contract);
+  }
+
+  deleteContract(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/Contracts/delete?id=${id}`);
+  }
 
   // Parts
   getAllParts(): Observable<Part[]> {
@@ -31,13 +42,24 @@ export class DashboardService {
   getInProgressPartsCount(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/parts/in-progress-count`);
   }
+addPart(part: Part): Observable<any> {
+    return this.http.post(`${this.baseUrl}/Parts/add`, part);
+}
 
+editPart(id: number, part: Part): Observable<any> {
+    return this.http.put(`${this.baseUrl}/Parts/edit?id=${id}`, part);
+}
+
+deletePart(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/Parts/delete?id=${id}`);
+}
   // Service Centres
   getAllServiceCentres(): Observable<ServiceCentre[]> {
     return this.http.get<ServiceCentre[]>(`${this.baseUrl}/servicecentre`);
   }
   getServiceCentreCount(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/servicecentre/count`);
+    
   }
 
   // Partners
@@ -47,6 +69,7 @@ export class DashboardService {
   getPartnerCount(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/partner/count`);
   }
+
 
   // Staff
   getAllStaff(): Observable<Staff[]> {

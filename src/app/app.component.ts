@@ -19,7 +19,6 @@ export class AppComponent {
     { text: 'Service Centres',path:'/servicecentre' },
     { text: 'Partners',path:'/partner' },
     {text:'Staff',path:'/staff'},
-{text:'Login',path:'/login'}
   ];
 
   onMenuClick(e: any): void {

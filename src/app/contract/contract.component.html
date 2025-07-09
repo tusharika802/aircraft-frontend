@@ -1,14 +1,22 @@
 <div class="card-container">
-  <!-- Row 1: Contracts & Parts -->
   <div class="card-row">
-    <!-- Contracts -->
     <div class="card-group">
       <div class="card-title-box small-title">CONTRACTS</div>
       <div class="card">
-        <dx-data-grid [dataSource]="contracts" [showBorders]="true">
-          <dxi-column dataField="id" caption="ID"  alignment="center"></dxi-column>
-          <dxi-column dataField="title" caption="Title"  alignment="center"></dxi-column>
-          <dxi-column dataField="isActive" caption="Active" alignment="center"></dxi-column>
-        </dx-data-grid>
+        <dx-data-grid
+  [dataSource]="contracts"
+  [showBorders]="true"
+  [editing]="{ mode: 'popup', allowUpdating: true, allowAdding: true, allowDeleting: true }"
+  (onRowInserting)="onAdd($event)"
+  (onRowUpdating)="onEdit($event)"
+  (onRowRemoving)="onDelete($event)"
+>
+  <!-- <dxi-column dataField="id" caption="ID" [allowEditing]="false" alignment="center"></dxi-column> -->
+  <dxi-column dataField="title" caption="Title" alignment="center"></dxi-column>
+  <dxi-column dataField="isActive" caption="Active" alignment="center" dataType="boolean"></dxi-column>
+  <dxo-editing mode="popup" [allowAdding]="true" [allowDeleting]="true" [allowUpdating]="true">
+    <dxo-popup title="Contract Details" [showTitle]="true" [width]="400" [height]="250"></dxo-popup>
+  </dxo-editing>
+</dx-data-grid>
       </div>
     </div>

@@ -1,17 +1,24 @@
-<!-- login -->
-<!-- <div class="dashboard-header">
-  <button class="login-btn" (click)="openLoginPopup()">Login</button>
-</div>
-<app-login *ngIf="showLoginPopup" (close)="closeLoginPopup()"></app-login> -->
-<!-- 🔷 DevExtreme Login Button -->
+
 <div class="dashboard-header">
-  <dx-button 
-    text="Login" 
-    icon="user" 
-    type="default" 
+  <dx-button
+    *ngIf="!isLoggedIn"
+    text="Login"
+    icon="user"
+    type="default"
+    class="login-btn"
     (onClick)="openLoginPopup()">
   </dx-button>
+
+  <dx-button
+    *ngIf="isLoggedIn"
+    text="Logout"
+    icon="runner"
+    type="danger"
+    class="logout-btn"
+    (onClick)="logout()">
+  </dx-button>
 </div>
+
 <!-- login -->
 
 <div class="full-card-wrapper">

@@ -9,13 +9,15 @@ import { StaffComponent } from './staff/staff.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-    { path: 'dashboard', component: DashboardComponent },
+    { path: 'dashboard', component: DashboardComponent  },
     {path:'contract',component:ContractComponent},
     {path:'parts',component:PartsComponent},
     {path:'servicecentre',component:ServicecentreComponent},
     {path:'partner',component:PartnerComponent},
     {path:'staff',component:StaffComponent},
-    {path:'login',component:LoginComponent}
+    {path:'login',component:LoginComponent},
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+
 
 ];
 

@@ -1,10 +1,44 @@
-<p>login works!</p>
 <div class="login-popup">
   <h3>Login</h3>
-  <form (submit)="login()">
-    <input type="text" placeholder="Username" required /><br />
-    <input type="password" placeholder="Password" required /><br />
-    <button type="submit">Login</button>
-    <button type="button" (click)="close.emit()">Cancel</button>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <dx-text-box
+      [(value)]="username"
+      placeholder="Username"
+      name="username"
+      required
+    ></dx-text-box>
+
+    <br /><br />
+
+    <dx-text-box
+      [(value)]="password"
+      placeholder="Password"
+      mode="password"
+      name="password"
+      required
+    ></dx-text-box>
+
+    <br /><br />
+
+    <dx-button
+      text="Login"
+      type="default"
+      stylingMode="contained"
+      (onClick)="login()"
+    ></dx-button>
+
+    &nbsp;
+
+    <dx-button
+      text="Cancel"
+      type="normal"
+      stylingMode="outlined"
+      (onClick)="close.emit()"
+    ></dx-button>
+
+    <br /><br />
+
+    <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
   </form>
 </div>
