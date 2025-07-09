@@ -61,6 +61,17 @@ deletePart(id: number): Observable<any> {
     return this.http.get<number>(`${this.baseUrl}/servicecentre/count`);
     
   }
+addServiceCentre(centre: ServiceCentre): Observable<any> {
+  return this.http.post(`${this.baseUrl}/servicecentre/add`, centre);
+}
+
+editServiceCentre(id: number, centre: ServiceCentre): Observable<any> {
+  return this.http.put(`${this.baseUrl}/servicecentre/edit?id=${id}`, centre);
+}
+
+deleteServiceCentre(id: number): Observable<any> {
+  return this.http.delete(`${this.baseUrl}/servicecentre/delete?id=${id}`);
+}
 
   // Partners
   getAllPartners(): Observable<Partner[]> {
@@ -69,7 +80,17 @@ deletePart(id: number): Observable<any> {
   getPartnerCount(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/partner/count`);
   }
+  addPartner(partner: Partner): Observable<any> {
+  return this.http.post(`${this.baseUrl}/partner/add`, partner);
+}
 
+editPartner(id: number, partner: Partner): Observable<any> {
+  return this.http.put(`${this.baseUrl}/partner/edit?id=${id}`, partner);
+}
+
+deletePartner(id: number): Observable<any> {
+  return this.http.delete(`${this.baseUrl}/partner/delete?id=${id}`);
+}
 
   // Staff
   getAllStaff(): Observable<Staff[]> {
@@ -77,5 +98,17 @@ deletePart(id: number): Observable<any> {
   }
   getActiveStaffCount(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/staff/active-count`);
+
   }
+  addStaff(staff: Staff): Observable<any> {
+  return this.http.post(`${this.baseUrl}/staff/add`, staff);
+}
+
+editStaff(id: number, staff: Staff): Observable<any> {
+  return this.http.put(`${this.baseUrl}/staff/edit?id=${id}`, staff);
+}
+
+deleteStaff(id: number): Observable<any> {
+  return this.http.delete(`${this.baseUrl}/staff/delete?id=${id}`);
+}
 }
