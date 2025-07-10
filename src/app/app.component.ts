@@ -23,22 +23,44 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(private router: Router) {}
+userName = '';
+profileImage = '';
 
-  ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      this.showLoginPopup = true; // show login modal on first load
-    } else {
-      this.isLoggedIn = true;
-      this.router.navigate(['/dashboard']); // optional: auto redirect
-    }
-  }
-
-  onLoginSuccess(): void {
+ngOnInit(): void {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    this.showLoginPopup = true;
+  } else {
     this.isLoggedIn = true;
-    this.showLoginPopup = false;
+    this.userName = localStorage.getItem('username') || '';
+    this.profileImage = localStorage.getItem('profileImage') || '';
     this.router.navigate(['/dashboard']);
   }
+}
+
+onLoginSuccess(): void {
+  this.isLoggedIn = true;
+  this.showLoginPopup = false;
+  this.userName = localStorage.getItem('username') || '';
+  this.profileImage = localStorage.getItem('profileImage') || '';
+  this.router.navigate(['/dashboard']);
+}
+
+  // ngOnInit(): void {
+  //   const token = localStorage.getItem('token');
+  //   if (!token) {
+  //     this.showLoginPopup = true; // show login modal on first load
+  //   } else {
+  //     this.isLoggedIn = true;
+  //     this.router.navigate(['/dashboard']); // optional: auto redirect
+  //   }
+  // }
+
+  // onLoginSuccess(): void {
+  //   this.isLoggedIn = true;
+  //   this.showLoginPopup = false;
+  //   this.router.navigate(['/dashboard']);
+  // }
 
   logout(): void {
     localStorage.removeItem('token');
