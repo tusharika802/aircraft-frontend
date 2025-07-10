@@ -33,17 +33,27 @@ constructor(
   partners: Partner[] = [];
   staffList: Staff[] = [];
 
+  // showLoginPopup = false;
+
+  // openLoginPopup(): void {
+  //   this.showLoginPopup = true;
+  //   this.router.navigate(['/login']); // Redirect to login
+  // }
+
+  //  closeLoginPopup(): void {
+  //   this.showLoginPopup = false;
+  // }
+  
   showLoginPopup = false;
 
-  openLoginPopup(): void {
-    this.showLoginPopup = true;
-    this.router.navigate(['/login']); // Redirect to login
-  }
+openLoginPopup(): void {
+  this.showLoginPopup = true;
+}
 
-   closeLoginPopup(): void {
-    this.showLoginPopup = false;
-  }
-  
+closeLoginPopup(): void {
+  this.showLoginPopup = false;
+}
+
 
   ngOnInit(): void {
     this.isLoggedIn = !!localStorage.getItem('token');  // ✅ Check if token exists
@@ -57,6 +67,11 @@ constructor(
     this.isLoggedIn = false;
     window.location.reload(); // Refresh to re-check login status
   }
+onLoginSuccess(): void {
+  this.isLoggedIn = true;
+  this.loadDashboardData(); // ✅ Load immediately
+  this.router.navigate(['/dashboard']); // Optional if not already on dashboard
+}
 
 
 private loadDashboardData(): void {
@@ -68,7 +83,7 @@ private loadDashboardData(): void {
     this.service.getPartnerCount().subscribe(res => this.partnerCount = res);
     this.service.getActiveStaffCount().subscribe(res => this.staffCount = res);
       //Grid data
-     this.service.getAllContracts().subscribe(res => this.contracts = res);
+    this.service.getAllContracts().subscribe(res => this.contracts = res);
     this.service.getAllParts().subscribe(res => this.parts = res);
     this.service.getAllServiceCentres().subscribe(res => this.serviceCentres = res);
     this.service.getAllPartners().subscribe(res => this.partners = res);

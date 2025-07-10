@@ -12,13 +12,48 @@
   <dx-button
     *ngIf="isLoggedIn"
     text="Logout"
-    icon="export"
+    icon="runner"
     type="danger"
     class="logout-btn"
     (onClick)="logout()">
   </dx-button>
 </div>
 
+
+<!-- new -->
+<!-- 
+<dx-popup
+  [(visible)]="showLoginPopup"
+  [width]="400"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="Login"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  (onHiding)="closeLoginPopup()"
+>
+  <app-login (close)="closeLoginPopup()"></app-login>
+</dx-popup> -->
+
+
+<dx-popup
+  [(visible)]="showLoginPopup"
+  [width]="400"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="Login"
+  [dragEnabled]="true"
+  [showCloseButton]="true"
+  (onHiding)="closeLoginPopup()"
+>
+  <app-login 
+    (close)="closeLoginPopup()" 
+    (loginSuccess)="onLoginSuccess()">
+  </app-login>
+</dx-popup>
+
+<!-- new -->
+ 
 <!-- login -->
 
 <div class="full-card-wrapper">
