@@ -15,23 +15,6 @@ export class LoginComponent {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  // login() {
-  //   const payload = {
-  //     username: this.username,
-  //     password: this.password,
-  //   };
-
-  //   this.http.post<any>('https://localhost:7227/api/Account/login', payload).subscribe({
-  //     next: (res) => {
-  //       localStorage.setItem('token', res.token);
-  //       this.close.emit();
-  //       this.router.navigate(['/dashboard']); // ✅ Auto-redirect
-  //     },
-  //     error: () => {
-  //       this.errorMessage = 'Invalid credentials';
-  //     }
-  //   });
-  // }
   login() {
   const payload = {
     username: this.username,

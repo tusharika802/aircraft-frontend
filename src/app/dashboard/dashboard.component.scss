@@ -14,7 +14,7 @@
   box-shadow: 0 2px 8px rgb(194, 190, 190);
   padding: 20px;
   width: 102%;
-  margin: -30px; /* ⬅ moves it slightly upward */
+  margin: -27px; /* ⬅ moves it slightly upward */
   gap: 2000px;
   justify-content: center;
   
@@ -160,13 +160,7 @@
   box-shadow: red;
   background-color: #4caf50;
 }
-// .dashboard-header{
-//   background-color: rgb(143, 143, 225);
-//   display: flex;
-//   justify-content: flex-end;  // 🔁 Pushes button to right
-//   padding: 10px 20px;
-//     margin-left: -2%;
-//     margin-top: -2%;
+
 .dashboard-header {
   display: flex;
   justify-content: flex-end; /* 🔁 Align items to the right */

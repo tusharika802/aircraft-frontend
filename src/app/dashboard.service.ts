@@ -104,7 +104,7 @@ deletePartner(id: number): Observable<any> {
   return this.http.post(`${this.baseUrl}/staff/add`, staff);
 }
 
-editStaff(id: number, staff: Staff): Observable<any> {
+  editStaff(id: number, staff: Staff): Observable<any> {
   return this.http.put(`${this.baseUrl}/staff/edit?id=${id}`, staff);
 }
 
