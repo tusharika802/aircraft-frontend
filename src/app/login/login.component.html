@@ -1,44 +1,28 @@
-<div class="login-popup">
-  <h3>Login</h3>
+<div class="login-form">
+  <dx-text-box
+    [(value)]="username"
+    placeholder="Username"
+    [showClearButton]="true"
+    [width]="'100%'">
+  </dx-text-box>
 
-  <form (ngSubmit)="login()" #loginForm="ngForm">
-    <dx-text-box
-      [(value)]="username"
-      placeholder="Username"
-      name="username"
-      required
-    ></dx-text-box>
+  <dx-text-box
+    [(value)]="password"
+    placeholder="Password"
+    [mode]="'password'"
+    [showClearButton]="true"
+    [width]="'100%'"
+    style="margin-top: 10px;">
+  </dx-text-box>
 
-    <br /><br />
+  <div *ngIf="errorMessage" class="error" style="color: red; margin-top: 10px;">
+    {{ errorMessage }}
+  </div>
 
-    <dx-text-box
-      [(value)]="password"
-      placeholder="Password"
-      mode="password"
-      name="password"
-      required
-    ></dx-text-box>
-
-    <br /><br />
-
-    <dx-button
-      text="Login"
-      type="default"
-      stylingMode="contained"
-      (onClick)="login()"
-    ></dx-button>
-
-    &nbsp;
-
-    <dx-button
-      text="Cancel"
-      type="normal"
-      stylingMode="outlined"
-      (onClick)="close.emit()"
-    ></dx-button>
-
-    <br /><br />
-
-    <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
-  </form>
+  <dx-button
+    text="Login"
+    type="success"
+    style="margin-top: 15px; width: 100%;"
+    (onClick)="login()">
+  </dx-button>
 </div>

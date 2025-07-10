@@ -33,27 +33,7 @@ constructor(
   partners: Partner[] = [];
   staffList: Staff[] = [];
 
-  // showLoginPopup = false;
-
-  // openLoginPopup(): void {
-  //   this.showLoginPopup = true;
-  //   this.router.navigate(['/login']); // Redirect to login
-  // }
-
-  //  closeLoginPopup(): void {
-  //   this.showLoginPopup = false;
-  // }
   
-  showLoginPopup = false;
-
-openLoginPopup(): void {
-  this.showLoginPopup = true;
-}
-
-closeLoginPopup(): void {
-  this.showLoginPopup = false;
-}
-
 
   ngOnInit(): void {
     this.isLoggedIn = !!localStorage.getItem('token');  // ✅ Check if token exists
@@ -62,17 +42,6 @@ closeLoginPopup(): void {
       this.loadDashboardData();                         // ✅ Load data only when logged in
     }
   }
-  logout(): void {
-    localStorage.removeItem('token');
-    this.isLoggedIn = false;
-    window.location.reload(); // Refresh to re-check login status
-  }
-onLoginSuccess(): void {
-  this.isLoggedIn = true;
-  this.loadDashboardData(); // ✅ Load immediately
-  this.router.navigate(['/dashboard']); // Optional if not already on dashboard
-}
-
 
 private loadDashboardData(): void {
 

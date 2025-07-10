@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="dashboard-header">
   <dx-button
     *ngIf="!isLoggedIn"
@@ -17,7 +17,7 @@
     class="logout-btn"
     (onClick)="logout()">
   </dx-button>
-</div>
+</div> -->
 
 
 <!-- new -->
@@ -35,7 +35,7 @@
   <app-login (close)="closeLoginPopup()"></app-login>
 </dx-popup> -->
 
-
+<!-- 
 <dx-popup
   [(visible)]="showLoginPopup"
   [width]="400"
@@ -50,10 +50,19 @@
     (close)="closeLoginPopup()" 
     (loginSuccess)="onLoginSuccess()">
   </app-login>
-</dx-popup>
+</dx-popup> -->
 
 <!-- new -->
- 
+ <!-- <div class="dashboard-header">
+ <dx-button
+    *ngIf="isLoggedIn"
+    text="Logout"
+    icon="runner"
+    type="danger"
+    class="logout-btn"
+    (onClick)="logout()">
+  </dx-button>
+</div>  -->
 <!-- login -->
 
 <div class="full-card-wrapper">

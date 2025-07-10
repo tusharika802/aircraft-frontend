@@ -1,49 +1,59 @@
-<dx-drawer
-  [opened]="true"
-  [shading]="false"
-  [minSize]="200"
-  [template]="'menuTemplate'"
-  [openedStateMode]="'push'"
-  [revealMode]="'slide'"
-  [height]="'100vh'">
+<!-- ✅ Login Popup -->
+<dx-popup
+  [(visible)]="showLoginPopup"
+  [width]="400"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="Login"
+  [dragEnabled]="true"
+  [showCloseButton]="false">
+  <app-login (loginSuccess)="onLoginSuccess()"></app-login>
+</dx-popup>
 
-  <!-- Sidebar Content (Menu + Logo) -->
-  <div *dxTemplate="let data of 'menuTemplate'">
-    <div style="
-      width: 250px;
-      background-color: #f4f4f4;
-      height: 100vh;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
+<!-- ✅ Logout Button in Top-Right Corner -->
 
-    ">
-      
-      <!-- Logo -->
-      <div style="
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-        margin-bottom: 20px;
-        flex-shrink: 0;
-      ">
-          Aircraft 
-         Management
-      </div>
+<div class="app-header">
+<div *ngIf="isLoggedIn" style="position: absolute; top: 13px; right: 20px; z-index: 1000;">
+  <dx-button
+    text="Logout"
+    icon="runner"
+    type="danger"
+    (onClick)="logout()">
+  </dx-button>
+</div>
+</div>
+<!-- ✅ Sidebar + Router Content - Only after login -->
+<div *ngIf="isLoggedIn">
+  <dx-drawer
+    [(opened)]="drawerOpened"
+    [shading]="false"
+    [minSize]="200"
+    [template]="'menuTemplate'"
+    [openedStateMode]="'push'"
+    [revealMode]="'slide'"
+    [height]="'100vh'">
 
-      <!-- Menu List (Scrollable) -->
-      <div style="flex-grow: 1; overflow-y: auto;">
-        <dx-list
-          [items]="menuItems"
-          [selectionMode]="'single'"
-          (onItemClick)="onMenuClick($event)">
-        </dx-list>
+    <!-- Sidebar Template -->
+    <div *dxTemplate="let data of 'menuTemplate'">
+      <div style="width: 250px; background-color: #f4f4f4; height: 100vh; padding: 10px; display: flex; flex-direction: column;">
+        <div style="text-align: center; font-weight: bold; font-size: 20px; margin-bottom: 20px;">
+          Aircraft Management
+        </div>
+
+        <!-- Menu Items -->
+        <div style="flex-grow: 1; overflow-y: auto;">
+          <dx-list
+            [items]="menuItems"
+            [selectionMode]="'single'"
+            (onItemClick)="onMenuClick($event)">
+          </dx-list>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Main Content Area -->
-  <div style="padding: 20px;">
-    <router-outlet></router-outlet>
-  </div>
-</dx-drawer>
+    <!-- Main Router View -->
+    <div style="padding: 20px;">
+      <router-outlet></router-outlet>
+    </div>
+  </dx-drawer>
+</div>
