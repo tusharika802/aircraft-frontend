@@ -16,7 +16,7 @@ const routes: Routes = [
     {path:'partner',component:PartnerComponent},
     {path:'staff',component:StaffComponent},
     {path:'login',component:LoginComponent},
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 
 
 ];
