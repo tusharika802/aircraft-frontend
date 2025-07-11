@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  userName = '';
+  profileImage = '';
+  
   title = 'aircraftproject';
   drawerOpened = true;
   selectedMenu = 'Dashboard';
@@ -14,8 +17,6 @@ export class AppComponent implements OnInit {
   showLoginPopup = false;
   showRegisterPopup = false;
 
-  userName = '';
-  profileImage = '';
 
   menuItems = [
     { text: 'Dashboard', path: '/dashboard' },
