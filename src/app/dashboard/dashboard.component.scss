@@ -188,3 +188,17 @@
   justify-content: center;
   margin-top: 0%;
 }
+/* Custom background image for DevExtreme popup overlay */
+.dx-overlay-wrapper.dx-popup-wrapper.dx-overlay-shader
+{
+
+ background-image: url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92'); /* plane image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(3px); /* optional blur effect */
+}
+
+::ng-deep .dx-drawer-content.dx-theme-background-color {
+    padding: 35px 200px 0px 0px !important;
+}

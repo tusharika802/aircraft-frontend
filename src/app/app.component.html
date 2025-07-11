@@ -1,4 +1,4 @@
-<!-- ✅ Login Popup -->
+<!--  Login Popup -->
 <dx-popup
   [(visible)]="showLoginPopup"
   [width]="400"
@@ -7,14 +7,28 @@
   title="Login"
   [dragEnabled]="true"
   [showCloseButton]="false">
-  <app-login (loginSuccess)="onLoginSuccess()"></app-login>
+  <app-login (loginSuccess)="onLoginSuccess()" (openRegister)="openRegisterFromLogin()"></app-login>
+</dx-popup>
+<!-- Register Popup -->
+<dx-popup
+  [(visible)]="showRegisterPopup"
+  [width]="450"
+  [height]="'auto'"
+  [showTitle]="true"
+  title="Register"
+  [dragEnabled]="true"
+  [showCloseButton]="true">
+  <app-register 
+  (close)="closeRegister()" 
+  (registrationCompleted)="onRegistrationCompleted()">
+</app-register>
+
 </dx-popup>
 
-<!-- ✅ Logout Button in Top-Right Corner -->
+<!--  Logout Button in Top-Right Corner -->
 
 <div *ngIf="isLoggedIn" style="position: absolute; top: 13px; right: 20px; display: flex; align-items: center; gap: 10px; z-index: 1000;">
   <div *ngIf="profileImage" style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
-    <!-- <img [src]="'https://localhost:7227' + profileImage" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;"> -->
      <img [src]="profileImage" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
 
   </div>
@@ -27,17 +41,6 @@
   </dx-button>
 </div>
 
-<!-- 
-<div class="app-header">
-<div *ngIf="isLoggedIn" style="position: absolute; top: 13px; right: 20px; z-index: 1000;">
-  <dx-button
-    text="Logout"
-    icon="runner"
-    type="danger"
-    (onClick)="logout()">
-  </dx-button>
-</div>
-</div> -->
 <!-- ✅ Sidebar + Router Content - Only after login -->
 <div *ngIf="isLoggedIn">
   <dx-drawer

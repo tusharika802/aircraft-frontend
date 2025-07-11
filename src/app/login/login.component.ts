@@ -12,6 +12,11 @@ export class LoginComponent {
   errorMessage: string = '';
 
   @Output() loginSuccess = new EventEmitter<void>();
+  @Output() openRegister = new EventEmitter<void>(); // 🔁 To notify app.component to open register modal
+switchToRegister(): void {
+  this.openRegister.emit();
+}
+
 
   constructor(private http: HttpClient) {}
 

@@ -15,6 +15,7 @@ import { StaffComponent } from './staff/staff.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth.interceptor';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthInterceptor } from './auth.interceptor';
     PartnerComponent,
     StaffComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

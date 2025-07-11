@@ -12,6 +12,10 @@ export class AppComponent implements OnInit {
   selectedMenu = 'Dashboard';
   isLoggedIn = false;
   showLoginPopup = false;
+  showRegisterPopup = false;
+
+  userName = '';
+  profileImage = '';
 
   menuItems = [
     { text: 'Dashboard', path: '/dashboard' },
@@ -23,47 +27,46 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(private router: Router) {}
-userName = '';
-profileImage = '';
 
-ngOnInit(): void {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    this.showLoginPopup = true;
-  } else {
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.showLoginPopup = true;
+    } else {
+      this.isLoggedIn = true;
+      this.userName = localStorage.getItem('username') || '';
+      this.profileImage = localStorage.getItem('profileImage') || '';
+      this.router.navigate(['/dashboard']);
+    }
+  }
+
+  onLoginSuccess(): void {
     this.isLoggedIn = true;
+    this.showLoginPopup = false;
     this.userName = localStorage.getItem('username') || '';
     this.profileImage = localStorage.getItem('profileImage') || '';
     this.router.navigate(['/dashboard']);
   }
+onRegistrationCompleted(): void {
+  this.showRegisterPopup = false;
+  this.showLoginPopup = true; // ✅ Show login modal after registration
 }
 
-onLoginSuccess(): void {
-  this.isLoggedIn = true;
-  this.showLoginPopup = false;
-  this.userName = localStorage.getItem('username') || '';
-  this.profileImage = localStorage.getItem('profileImage') || '';
-  this.router.navigate(['/dashboard']);
+  openRegisterFromLogin(): void {
+    this.showLoginPopup = false;
+    this.showRegisterPopup = true;
+  }
+
+  closeRegister(): void {
+  this.showRegisterPopup = false;
+  this.showLoginPopup = true; // 👈 Show login popup after closing register
 }
 
-  // ngOnInit(): void {
-  //   const token = localStorage.getItem('token');
-  //   if (!token) {
-  //     this.showLoginPopup = true; // show login modal on first load
-  //   } else {
-  //     this.isLoggedIn = true;
-  //     this.router.navigate(['/dashboard']); // optional: auto redirect
-  //   }
-  // }
-
-  // onLoginSuccess(): void {
-  //   this.isLoggedIn = true;
-  //   this.showLoginPopup = false;
-  //   this.router.navigate(['/dashboard']);
-  // }
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('profileImage');
     this.isLoggedIn = false;
     this.router.navigate(['/']);
     window.location.reload();
