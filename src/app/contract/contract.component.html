@@ -2,83 +2,97 @@
   <div class="card-row">
     <div class="card-group">
       <div class="card-title-box small-title">CONTRACTS</div>
+
       <div class="card">
         <dx-data-grid
           [dataSource]="contracts"
           [showBorders]="true"
           keyExpr="id"
-          [editing]="{ mode: 'popup', allowUpdating: true, allowAdding: true, allowDeleting: true }"
-          (onRowInserting)="onAdd($event)"
+          [editing]="{
+            mode: 'popup',
+            allowUpdating: true,
+            allowAdding: true,
+            allowDeleting: true
+          }"
+          (onRowInserting)="onAdd($event, partnerIds)"
           (onRowUpdating)="onEdit($event)"
           (onRowRemoving)="onDelete($event)"
         >
-          <!-- Title Column -->
-          <dxi-column dataField="title" caption="Contract Name" alignment="center"></dxi-column>
+          <!-- Columns -->
+          <dxi-column
+            dataField="title"
+            caption="Contract Name"
+            alignment="center"
+          ></dxi-column>
 
-          <!-- Active Column -->
-          <dxi-column dataField="isActive" caption="Contract Active" alignment="center" dataType="boolean"></dxi-column>
+          <dxi-column
+            dataField="isActive"
+            caption="Contract Active"
+            dataType="boolean"
+            alignment="center"
+          ></dxi-column>
 
-        <dxi-column
-  dataField="contractPartner"
-  caption="Partners"
-  alignment="center"
-></dxi-column>
+          <dxi-column
+            caption="Partners"
+            [calculateCellValue]="getPartnerNames"
+            alignment="center"
+          ></dxi-column>
 
-
+          <!-- Popup & Form Configuration -->
           <dxo-editing
-  mode="popup"
-  [allowAdding]="true"
-  [allowDeleting]="true"
-  [allowUpdating]="true"
->
-  <dxo-popup
-    title="Contract Details"
-    [showTitle]="true"
-    [width]="600"
-    [height]="400"
-  ></dxo-popup>
+            mode="popup"
+            [allowAdding]="true"
+            [allowDeleting]="true"
+            [allowUpdating]="true"
+          >
+            <dxo-popup
+              title="Contract Details"
+              [showTitle]="true"
+              [width]="600"
+              [height]="400"
+            ></dxo-popup>
 
-  <dxo-form>
-    <dxi-item dataField="title" [colSpan]="2" caption="Contract Name"></dxi-item>
-    <dxi-item dataField="isActive" [colSpan]="2" caption="Contract Active"></dxi-item>
+            <dxo-form>
+              <dxi-item
+                dataField="title"
+                caption="Contract Name"
+                [colSpan]="2"
+              ></dxi-item>
 
-    <!-- ✅ Partner Multi-select field -->
-    <dxi-item
-      dataField="contractPartner"
-      [editorType]="'dxTagBox'"
-      [editorOptions]="{
-        dataSource: partners,
-        displayExpr: 'name',
-        valueExpr: 'id',
-        showSelectionControls: true,
-        applyValueMode: 'useButtons',
-        searchEnabled: true
-      }"
-      caption="Select Partners"
-      [colSpan]="2"
-    ></dxi-item>
-  </dxo-form>
-</dxo-editing>
+              <dxi-item
+                dataField="isActive"
+                caption="Contract Active"
+                [colSpan]="2"
+              ></dxi-item>
 
+              <!--  Multi-select Partner Dropdown -->
+              <!-- <dxi-item dataField="partnerIds" [editorType]="'dxTagBox'" [editorOptions]="{
+                  dataSource: partners,
+                  displayExpr: 'name',
+                  valueExpr: 'id',
+                  showSelectionControls: true,
+                  applyValueMode: 'useButtons',
+                  searchEnabled: true,
+                  onValueChanged: onPartnerChanged
+                }" caption="Select Partners" [colSpan]="2"></dxi-item> -->
 
-          <!-- Template for editing partners -->
-          <ng-template #partnerTemplate let-cellInfo="cellInfo">
-            <dx-tag-box
-              [dataSource]="partners"
-              displayExpr="name"
-              valueExpr="id"
-              [(value)]="cellInfo.data.contractPartner"
-              [showSelectionControls]="true"
-              [applyValueMode]="'useButtons'"
-              [searchEnabled]="true"
-              [multiline]="false"
-              placeholder="Select partners"
-            ></dx-tag-box>
-          </ng-template>
+                <dxi-item
+  dataField="partnerIds"
+  [editorType]="'dxTagBox'"
+  [editorOptions]="{
+    dataSource: partners,
+    displayExpr: 'name',
+    valueExpr: 'id',
+    showSelectionControls: true,
+    applyValueMode: 'useButtons',
+    searchEnabled: true,
+    onValueChanged: onPartnerChanged
+  }"
+  caption="Select Partners"
+  [colSpan]="2"
+></dxi-item>
 
-          <!-- Popup Config -->
-          <dxo-editing mode="popup" [allowAdding]="true" [allowDeleting]="true" [allowUpdating]="true">
-            <dxo-popup title="Contract Details" [showTitle]="true" [width]="500" [height]="350"></dxo-popup>
+            </dxo-form>
           </dxo-editing>
         </dx-data-grid>
       </div>

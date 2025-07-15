@@ -1,66 +1,98 @@
 import { Component, OnInit } from '@angular/core';
-import { Contract } from '../contract';
 import { DashboardService } from '../dashboard.service';
 import { Partner } from '../partner';
+import { Contract } from '../contract';
 
 @Component({
   selector: 'app-contract',
   templateUrl: './contract.component.html',
-  styleUrls: ['./contract.component.scss']
+    styleUrl: './contract.component.scss'
+
 })
 export class ContractComponent implements OnInit {
   partners: Partner[] = [];
-  contracts: Contract[] = [];
+  contracts: any[] = [];
+  partnerIds : any[] = [];
 
-  constructor(private service: DashboardService) {}
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
+    this.loadPartners(); 
     this.loadContracts();
-    this.loadPartners();
   }
 
-  loadPartners() {
-    this.service.getAllPartners().subscribe(res => {
-      this.partners = res;
+  loadPartners(): void {
+    this.dashboardService.getAllPartners().subscribe((data: Partner[]) => {
+      this.partners = data;
     });
   }
 
-  loadContracts() {
-    this.service.getAllContracts().subscribe(res => {
-      this.contracts = res;
+  loadContracts(): void {
+    this.dashboardService.getAllContracts().subscribe((data: any[]) => {
+      this.contracts = data.map(c => {
+        const ids = c.partnerIds
+          ? c.partnerIds.split(',').map((id: string) => +id)
+          : [];
+        return {
+          ...c,
+          partnerIds: ids
+        };
+      });
     });
   }
 
-  getPartnerNames(contract: Contract): string {
-    if (!contract.contractPartner || contract.contractPartner.length === 0) {
-      return '-';
-    }
-    return contract.contractPartner.map(p => p.name).join(', ');
-  }
+  getPartnerNames = (rowData: any): string => {
+    const ids: number[] = rowData.partnerIds || [];
+    return this.partners
+      .filter(p => ids.includes(p.id))
+      .map(p => p.name)
+      .join(', ');
+  };
 
-  onAdd(e: any) {
-    const selectedIds = e.data.contractPartner;
-    e.data.contractPartner = this.partners.filter(p => selectedIds.includes(p.id));
-    this.service.addContract(e.data).subscribe(() => {
+  onPartnerChanged = (e: any) => {
+  const form = e.component.option('form');
+  if (form) {
+    const formData = form.option('formData');
+    formData.partnerIds = e.value;
+    form.option('formData', formData);
+  }
+};
+
+  onAdd(e: any, string: any) {
+
+    const selectedPartnerIds: number[] = e.data.partnerIds || [];
+    debugger;
+    const contract: Contract = {
+      title: e.data.title,
+      isActive: e.data.isActive ?? false,
+      partnerIds: selectedPartnerIds
+    };
+
+    this.dashboardService.addContract(contract).subscribe(() => {
       this.loadContracts();
     });
   }
 
   onEdit(e: any) {
-    const selectedIds = e.newData.contractPartner || e.oldData.contractPartner.map((p: Partner) => p.id);
+    const selectedPartnerIds =
+      e.newData.partnerIds ?? e.oldData.partnerIds ?? [];
+
     const updatedContract: Contract = {
-      ...e.oldData,
-      ...e.newData,
-      contractPartner: this.partners.filter(p => selectedIds.includes(p.id))
+      title: e.newData.title ?? e.oldData.title,
+      isActive: e.newData.isActive ?? e.oldData.isActive ?? false,
+      partnerIds: selectedPartnerIds
     };
-    this.service.editContract(updatedContract.id, updatedContract).subscribe(() => {
+
+    const id = e.key;
+
+    this.dashboardService.editContract(id, updatedContract).subscribe(() => {
       this.loadContracts();
     });
   }
 
   onDelete(e: any) {
     const id = e.data.id;
-    this.service.deleteContract(id).subscribe(() => {
+    this.dashboardService.deleteContract(id).subscribe(() => {
       this.loadContracts();
     });
   }

@@ -1,11 +1,7 @@
-import { Partner } from "./partner";
-
 export interface Contract {
-  id: number;
+  id?: number;
   title: string;
   isActive: boolean;
-  // contractPartner: { id: number; name: string; contractId: number }[];
-  contractPartner: Partner[]; // NOT a string
-
-
+  partnerIds: number[]; // Changed to number[] to match frontend usage
+  // partnerNames?: string[]; // Optional for display
 }

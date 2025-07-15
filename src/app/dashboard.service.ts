@@ -28,7 +28,7 @@ addContract(contract: Contract): Observable<any> {
   }
 
   editContract(id: number, contract: Contract): Observable<any> {
-    return this.http.put(`${this.baseUrl}/Contracts/edit?id=${id}`, contract);
+return this.http.put(`${this.baseUrl}/Contracts/edit/${id}`, contract);
   }
 
   deleteContract(id: number): Observable<any> {
