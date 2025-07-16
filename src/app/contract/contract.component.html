@@ -27,7 +27,7 @@
 
           <dxi-column
             dataField="isActive"
-            caption="Contract Active"
+            caption="Active"
             dataType="boolean"
             alignment="center"
           ></dxi-column>
@@ -38,7 +38,7 @@
             alignment="center"
           ></dxi-column>
 
-          <!-- Popup & Form Configuration -->
+          <!-- Popup & Form -->
           <dxo-editing
             mode="popup"
             [allowAdding]="true"
@@ -65,8 +65,10 @@
                 [colSpan]="2"
               ></dxi-item>
 
-              <!--  Multi-select Partner Dropdown -->
-              <!-- <dxi-item dataField="partnerIds" [editorType]="'dxTagBox'" [editorOptions]="{
+              <!-- <dxi-item
+                dataField="partners"
+                [editorType]="'dxTagBox'"
+                [editorOptions]="{
                   dataSource: partners,
                   displayExpr: 'name',
                   valueExpr: 'id',
@@ -74,9 +76,12 @@
                   applyValueMode: 'useButtons',
                   searchEnabled: true,
                   onValueChanged: onPartnerChanged
-                }" caption="Select Partners" [colSpan]="2"></dxi-item> -->
+                }"
+                caption="Select Partners"
+                [colSpan]="2">
+              </dxi-item> -->
 
-                <dxi-item
+              <dxi-item
   dataField="partnerIds"
   [editorType]="'dxTagBox'"
   [editorOptions]="{
@@ -85,8 +90,7 @@
     valueExpr: 'id',
     showSelectionControls: true,
     applyValueMode: 'useButtons',
-    searchEnabled: true,
-    onValueChanged: onPartnerChanged
+    searchEnabled: true
   }"
   caption="Select Partners"
   [colSpan]="2"

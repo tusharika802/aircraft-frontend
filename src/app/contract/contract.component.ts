@@ -55,36 +55,34 @@ export class ContractComponent implements OnInit {
     const formData = form.option('formData');
     formData.partnerIds = e.value;
     form.option('formData', formData);
+    console.log('Partner Changed:', e.value);
   }
 };
 
   onAdd(e: any, string: any) {
-
     const selectedPartnerIds: number[] = e.data.partnerIds || [];
-    debugger;
-    const contract: Contract = {
+    console.log('Selected Partner IDs:', selectedPartnerIds);
+    const contract: any = {
       title: e.data.title,
       isActive: e.data.isActive ?? false,
-      partnerIds: selectedPartnerIds
+      partnerIds: (selectedPartnerIds || []).join(',')
     };
-
     this.dashboardService.addContract(contract).subscribe(() => {
       this.loadContracts();
     });
   }
-
+  
   onEdit(e: any) {
     const selectedPartnerIds =
       e.newData.partnerIds ?? e.oldData.partnerIds ?? [];
 
-    const updatedContract: Contract = {
+    const updatedContract: any = {
       title: e.newData.title ?? e.oldData.title,
       isActive: e.newData.isActive ?? e.oldData.isActive ?? false,
-      partnerIds: selectedPartnerIds
+      partnerIds: (selectedPartnerIds || []).join(',') // string bana ke bhejein
     };
 
     const id = e.key;
-
     this.dashboardService.editContract(id, updatedContract).subscribe(() => {
       this.loadContracts();
     });
